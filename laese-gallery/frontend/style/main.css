@@ -1,0 +1,242 @@
+/* ============================================================
+   LÆSE Gallery — main.css
+   Estilos personalizados sobre Bootstrap 5
+   ============================================================ */
+
+:root {
+    --accent-color: #d4af37;
+    --bg-header: rgb(0, 64, 46);
+    --bg-card: #181818;
+    --bg-body: #111111;
+    --bg-footer: #0a0a0a;
+    --text-main: #f5f5f5;
+    --text-secondary: #ccc;
+    --border-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- Fondo global con imagen ---------- */
+body {
+    background-color: var(--bg-body);
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url("../img/fondo7.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: var(--text-main);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ---------- Modo Claro ---------- */
+body.tema-claro {
+    --bg-card: #f0f0f0;
+    --bg-body: #ffffff;
+    --bg-footer: #e8e8e8;
+    --text-main: #111111;
+    --text-secondary: #555555;
+    --border-color: #ccc;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --accent-color: #b8860b;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)),
+        url("../img/fondo7.jpg");
+}
+
+/* ---------- Navbar ---------- */
+#mainNavbar {
+    background-color: var(--bg-header) !important;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color) !important;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+/* ---------- Buscador ---------- */
+.buscar-container .form-control {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-main);
+    min-width: 220px;
+}
+.buscar-container .form-control::placeholder { color: #888; }
+.buscar-container .form-control:focus {
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.15rem rgba(212, 175, 55, 0.3);
+}
+
+/* ---------- Selector de tema ---------- */
+.tema-select {
+    background: #fff;
+    color: #333;
+    border: none;
+    font-size: 0.85rem;
+}
+
+/* ---------- Botón gold ---------- */
+.btn-gold {
+    background-color: var(--accent-color);
+    color: #000;
+    font-weight: 700;
+    border: none;
+    transition: background-color 0.2s, transform 0.15s;
+}
+.btn-gold:hover, .btn-gold:focus {
+    background-color: #f1c84b;
+    color: #000;
+    transform: scale(1.03);
+}
+
+/* ---------- Sección principal ---------- */
+.galeria-contenido {
+    flex: 1;
+}
+
+.titulo-seccion {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent-color);
+    text-transform: uppercase;
+}
+
+/* ---------- Tarjetas de relojes ---------- */
+.tarjeta-reloj {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    height: 100%;
+}
+
+.tarjeta-reloj:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px var(--shadow-color);
+    border-color: var(--accent-color);
+}
+
+.tarjeta-reloj img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #fff;
+}
+
+.tarjeta-reloj h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.tarjeta-reloj p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    background-color: var(--bg-footer);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-title {
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s, padding-left 0.2s;
+}
+.footer-links a:hover {
+    color: var(--accent-color);
+    padding-left: 5px;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(0, 27, 20, 0.8);
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+.social-btn:hover {
+    background: var(--accent-color);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.input-dark {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-main) !important;
+}
+.input-dark::placeholder { color: #888 !important; }
+.input-dark:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 0.15rem rgba(212, 175, 55, 0.3) !important;
+}
+
+.footer-hr {
+    border-color: #222;
+    opacity: 1;
+}
+
+/* ---------- Modales ---------- */
+.modal-dark {
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--accent-color);
+}
+.modal-dark .modal-header,
+.modal-dark .modal-footer { border-color: var(--border-color); }
+.border-gold { border-color: var(--accent-color) !important; }
+.text-gold { color: var(--accent-color) !important; }
+
+/* ---------- Alerta de error ---------- */
+#errorMsg {
+    color: #ff6b6b;
+    text-align: center;
+}
