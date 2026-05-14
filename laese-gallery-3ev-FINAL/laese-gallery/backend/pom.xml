@@ -31,32 +31,20 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- ══════════════════════════════════════════════════════
-             OPCIÓN A — Datos en memoria (sin base de datos)
-             Descomenta SOLO este bloque si NO usas PostgreSQL.
-             ══════════════════════════════════════════════════════ -->
-        <!--
-        Nada extra necesario; la clase RelojService ya incluye
-        una lista estática con los datos iniciales.
-        -->
-
-        <!-- ══════════════════════════════════════════════════════
-             OPCIÓN B — PostgreSQL con Spring Data JPA
-             Descomenta este bloque para usar base de datos.
-             ══════════════════════════════════════════════════════ -->
-        <!--
+        <!-- Spring Data JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
+        <!-- PostgreSQL driver -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-        -->
 
-        <!-- Lombok (opcional, reduce boilerplate) -->
+        <!-- Lombok (reduce boilerplate) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

@@ -1,25 +1,16 @@
 package com.laese.gallery.model;
 
+import jakarta.persistence.*;
+
 /**
- * Modelo de datos para un Reloj.
- *
- * ── OPCIÓN A (en memoria): usa esta clase tal cual.
- *
- * ── OPCIÓN B (JPA + PostgreSQL): descomenta las anotaciones
- *    @Entity, @Table, @Id, @GeneratedValue y el import
- *    correspondiente, y añade la dependencia JPA al pom.xml.
+ * Entidad JPA para la tabla "relojes" en PostgreSQL.
  */
-
-// OPCIÓN B — descomenta estas líneas para JPA:
-// import jakarta.persistence.*;
-// @Entity
-// @Table(name = "relojes")
-
+@Entity
+@Table(name = "relojes")
 public class Reloj {
 
-    // OPCIÓN B — descomenta para JPA:
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String titulo;

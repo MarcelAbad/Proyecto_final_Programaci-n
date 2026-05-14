@@ -14,30 +14,59 @@ laese-gallery/
 │   │   └── script.js       ← Llama a la API REST
 │   └── img/                ← Imágenes de los relojes
 │
-└── backend/                ← API REST con Spring Boot
+└── backend/                ← API REST con Spring Boot + JPA
     ├── pom.xml
     └── src/main/
         ├── java/com/laese/gallery/
         │   ├── GalleryApplication.java     ← Punto de entrada
         │   ├── controller/
-        │   │   └── RelojController.java    ← Endpoints REST
+        │   │   └── RelojController.java    ← Endpoints REST (CRUD completo)
         │   ├── model/
-        │   │   └── Reloj.java              ← Entidad / POJO
+        │   │   └── Reloj.java              ← Entidad JPA (@Entity)
         │   ├── repository/
-        │   │   └── RelojRepository.java    ← JPA (Opción B)
+        │   │   └── RelojRepository.java    ← Spring Data JPA
         │   └── service/
         │       └── RelojService.java       ← Lógica de negocio
         └── resources/
-            └── application.properties
+            └── application.properties     ← Config PostgreSQL
 ```
+
+---
+
+## Requisitos previos
+
+- Java 21
+- Maven (o usar el wrapper `./mvnw`)
+- PostgreSQL instalado y en ejecución
+
+---
+
+## Configuración de la base de datos
+
+1. Abre pgAdmin o psql y crea la base de datos:
+
+```sql
+CREATE DATABASE laese_db;
+```
+
+2. (Opcional) Si tu usuario/contraseña de PostgreSQL es diferente a `postgres/postgres`,
+   edita `backend/src/main/resources/application.properties`:
+
+```properties
+spring.datasource.username=TU_USUARIO
+spring.datasource.password=TU_PASSWORD
+```
+
+Spring Boot creará la tabla `relojes` automáticamente al arrancar
+gracias a `spring.jpa.hibernate.ddl-auto=update`.
 
 ---
 
 ## Cómo ejecutar
 
 ### Frontend
-Abre `frontend/index.html` con **Live Server** (VS Code) o cualquier
-servidor estático. Por defecto se sirve en `http://localhost:5500`.
+Abre `frontend/index.html` con **Live Server** (VS Code).
+Se sirve en `http://localhost:5500`.
 
 ### Backend (Spring Boot)
 
@@ -47,9 +76,10 @@ cd backend
 mvnw.cmd spring-boot:run      # Windows
 ```
 
-O desde tu IDE (IntelliJ / Eclipse): botón ▶ sobre `GalleryApplication`.
+O desde IntelliJ / Eclipse: botón ▶ sobre `GalleryApplication`.
 
 La API arranca en `http://localhost:8080`.
+Los datos iniciales (8 relojes) se insertan automáticamente si la tabla está vacía.
 
 ---
 
@@ -73,34 +103,13 @@ curl -X POST http://localhost:8080/api/relojes \
 
 ---
 
-## Opción A vs Opción B
-
-### Opción A — Datos en memoria (por defecto, sin BD)
-No necesitas instalar nada más. Los datos iniciales están en
-`RelojService.java`. Los cambios se pierden al reiniciar el servidor.
-
-### Opción B — PostgreSQL con Spring Data JPA
-Cuando el profesor explique JPA:
-
-1. Crea la base de datos en PostgreSQL:
-   ```sql
-   CREATE DATABASE laese_db;
-   ```
-2. Descomenta las dependencias JPA y PostgreSQL en `pom.xml`.
-3. Rellena las credenciales en `application.properties`.
-4. Descomenta las anotaciones `@Entity`, `@Id`, etc. en `Reloj.java`.
-5. Descomenta la interfaz `RelojRepository.java`.
-6. Sustituye el bloque de código en `RelojService.java`
-   (hay un comentario que indica exactamente qué copiar).
-
----
-
 ## Cambios respecto al proyecto del 2º trimestre
 
 | Aspecto        | Antes                         | Ahora                          |
 |----------------|-------------------------------|--------------------------------|
 | Estilos        | CSS propio                    | Bootstrap 5 + CSS personalizado|
-| Datos          | `data.xml` leído con fetch    | API REST Spring Boot           |
+| Datos          | `data.xml` leído con fetch    | API REST Spring Boot + JPA     |
+| Persistencia   | Sin persistencia real         | PostgreSQL vía Spring Data JPA |
 | Comunicación   | `DOMParser` sobre XML         | `fetch` con JSON               |
 | Modales        | CSS `.activo` manual          | `bootstrap.Modal`              |
 | Responsivo     | CSS Grid manual               | Bootstrap Grid `row-cols-*`    |
